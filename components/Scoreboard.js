@@ -24,11 +24,11 @@ const Scoreboard = () => {
 
     useEffect(() => {
         fetchAndUpdateScoreboard();
-    }, []); // Fetch scoreboard data on initial component mount
+    }, []);
 
     useFocusEffect(() => {
         fetchAndUpdateScoreboard();
-    }); // Fetch scoreboard data whenever the component gains focus
+    });
 
     const clearScoreboard = async () => {
         try {

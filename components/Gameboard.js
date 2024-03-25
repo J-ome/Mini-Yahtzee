@@ -56,19 +56,14 @@ const Gameboard = ({ navigation, route}) => {
         }
         setNbrOfThrowsLeft(nbrOfThrowsLeft - 1);
         setSelectedDices(newSelectedDices);
-
-        // Calculate total points after throwing dices
         const totalPointsAfterThrow = dicePointsTotal.reduce((acc, curr) => acc + curr, 0);
         console.log('Total points after throw:', totalPointsAfterThrow);
         console.log('Remaining points to bonus:', remainingPointsToBonus);
         if (totalPointsAfterThrow >= BONUS_POINTS_LIMIT && remainingPointsToBonus === 0) {
-            // Apply bonus points to the total points
             const totalPointsWithBonus = totalPointsAfterThrow + BONUS_POINTS;
             setTotalPoints(totalPointsWithBonus);
-            setRemainingPointsToBonus(0); // Reset remaining points to bonus
-            // Save end game score
+            setRemainingPointsToBonus(0);
             saveScore(totalPointsWithBonus, playerName);
-            // Navigate to scoreboard if needed
             if (assignedPoints.every(Boolean) && currentRound >= MAX_ROUNDS) {
                 navigation.navigate('Scoreboard', { finalScore: totalPointsWithBonus });
             }
@@ -98,9 +93,7 @@ const Gameboard = ({ navigation, route}) => {
       updatedAssignedPoints[index] = true;
       setAssignedPoints(updatedAssignedPoints);
       setAssigningPoints(false);
-      setSelectedDices(new Array(NBR_OF_DICES).fill(false)); // Reset selected dices
-  
-      // Save end game score
+      setSelectedDices(new Array(NBR_OF_DICES).fill(false));
       saveScore(totalPoints, playerName);
     }
   };
@@ -117,7 +110,7 @@ const Gameboard = ({ navigation, route}) => {
         <MaterialCommunityIcons
           name={board[index]}
           size={50}
-          color={selectedDices[index] ? "black" : "steelblue"}
+          color={selectedDices[index] ? "black" : "red"}
         />
       </Pressable>
     );
@@ -155,14 +148,13 @@ const Gameboard = ({ navigation, route}) => {
   const SCOREBOARD_SIZE = 7;
 const saveScore = async (totalScore, scoreTime) => {
     try {
-        // Retrieve existing scores
         const scoreboardData = await AsyncStorage.getItem('scoreboard');
         let scoreboard = [];
         if (scoreboardData !== null) {
             scoreboard = JSON.parse(scoreboardData);
         }
 
-        // Add new score only when all spots are assigned
+        //add new score when all points are assigned
         if (assignedPoints.every(Boolean)) {
             const newScoreboardEntry = { playerName, totalScore };
             scoreboard.push(newScoreboardEntry);

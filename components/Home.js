@@ -13,7 +13,6 @@ import {
     BONUS_POINTS,
     BONUS_POINTS_LIMIT
 } from '../constants/Game';
-import style from '../style/style';
 
 export default function Home({ navigation }) {
 
