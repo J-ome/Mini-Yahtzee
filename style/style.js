@@ -38,7 +38,8 @@ export default StyleSheet.create({
     fontSize: 20,
     marginTop: 10,
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
+    fontFamily: "Roboto"
   },
   row: {
     marginTop: 20,
@@ -60,7 +61,8 @@ export default StyleSheet.create({
   },
   buttonText: {
     color:"#ffffff",
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: "sans-serif"
   }, 
   bigDice: {
     alignSelf: 'center',
@@ -93,6 +95,7 @@ export default StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     marginBottom: 5,
+    fontFamily: "Roboto"
   },
   playButton: {
     margin: 30,
